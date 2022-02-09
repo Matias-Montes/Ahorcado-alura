@@ -1,6 +1,6 @@
 const canvas = document.querySelector("#ahorcado");
 const pincel = canvas.getContext("2d");
-pincel.fillStyle ="grey";
+pincel.fillStyle ="white";
 pincel.fillRect(1,0,1200,800);
 pincel.lineWidth = 1.5;
 pincel.fillStyle ="black";

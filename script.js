@@ -1,7 +1,7 @@
 const palabraActualContenedor = document.querySelector("#letras");
 const botonIniciar = document.querySelector("#iniciar");
 const juegoContenedor = document.querySelector(".juego");
-const modal = document.querySelector(".modal");
+const cartel = document.querySelector(".cartel");
 const letrasUsadasContenedor = document.querySelector("#letras-usadas");
 const controles = document.querySelector(".controles");
 const areaNuevasPalabras = document.querySelector("#nuevas-palabras");
@@ -24,11 +24,11 @@ inputMobile.addEventListener("input", ()=> {
 })
 
 
-function mostrarModal(titulo="", mensaje="", cb=(()=>window.location.assign(""))){
-    modal.querySelector("#titulo").textContent = titulo;
-    modal.querySelector("#mensaje").textContent = mensaje;
-    modal.querySelector(".btn").onclick = cb;
-    modal.style.display = "flex";
+function mostrarCartel(titulo="", mensaje="", cb=(()=>window.location.assign(""))){
+    cartel.querySelector("#titulo").textContent = titulo;
+    cartel.querySelector("#mensaje").textContent = mensaje;
+    cartel.querySelector(".btn").onclick = cb;
+    cartel.style.display = "flex";
 }
 
 async function Juego() {
@@ -53,14 +53,14 @@ async function Juego() {
             tecla = e.key.toUpperCase();
         }
         if (!letrasValidas.includes(tecla)) {
-            mostrarModal("", `La letra ${tecla} no es válida`, ()=>{
-                modal.style.display = "none"
+            mostrarCartel("", `La letra ${tecla} no es válida`, ()=>{
+                cartel.style.display = "none"
             })
             return;
         }
         if (letrasUsadas.includes(tecla)){
-            mostrarModal("", `Ya usaste la letra ${tecla}`, ()=>{
-                modal.style.display = "none"
+            mostrarCartel("", `Ya usaste la letra ${tecla}`, ()=>{
+                cartel.style.display = "none"
             })
             return;
         }else {
@@ -77,16 +77,16 @@ async function Juego() {
                 dibujar.shift()();
             }else if(dibujar.length === 1) {
                 dibujar.shift()();
-                mostrarModal("Perdiste", `La palabra era ${palabra}`);
+                mostrarCartel("Perdiste", `La palabra era ${palabra}`);
                 gameState = "over";
             }
             else {
-                mostrarModal("Perdiste", `La palabra era ${palabra}`);
+                mostrarCartel("Perdiste", `La palabra era ${palabra}`);
                 gameState = "over";
             }
         }
         if(palabraActual?.replaceAll(" ","") === palabra) {
-            mostrarModal("¡Ganaste!", `La palabra es ${palabra}`);
+            mostrarCartel("¡Ganaste!", `La palabra es ${palabra}`);
             gameState = "won";
         }
     }
